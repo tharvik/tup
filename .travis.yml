@@ -1,0 +1,22 @@
+language: c
+
+addons:
+  apt:
+    packages:
+      - libfuse-dev
+      - pkg-config
+      - fuse
+      - user-mode-linux
+
+compiler:
+  - clang
+    #- gcc
+
+install:
+  - sudo mknod /dev/fuse c 10 229
+  - sudo chmod 666 /dev/fuse
+  - sudo gpasswd -a "${USER}" fuse
+
+script:
+  - ./bootstrap.sh
+  - cd test && ./test.sh
