@@ -18,5 +18,5 @@ install:
   - sudo gpasswd -a "${USER}" fuse
 
 script:
-  - ./bootstrap.sh
-  - cd test && ./test.sh
+  - sudo -u "${USER}" ./bootstrap.sh
+  - cd test && sudo -u "${USER}" ./test.sh
