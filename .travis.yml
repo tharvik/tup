@@ -20,5 +20,5 @@ install:
 script:
   - ls -lisa /dev/fuse
   - groups
-  - sudo -u "${USER}" ./bootstrap.sh
-  - cd test && sudo -u "${USER}" ./test.sh
+  - sudo ./bootstrap.sh
+  - cd test && sudo ./test.sh
