@@ -13,12 +13,11 @@ compiler:
 
 install:
   - sudo mknod /dev/fuse c 10 229
-  - sudo chmod 777 /dev/fuse
-  - sudo chown root:fuse /dev/fuse
+  - sudo chmod 666 /dev/fuse
+  - sudo chown "${USER}:${USER}" /dev/fuse
   - sudo gpasswd -a "${USER}" fuse
 
 script:
-  - ls -lisa /dev/fuse
   - sudo -u "${USER}" groups
   - sudo ./bootstrap.sh
   - cd test && sudo ./test.sh
