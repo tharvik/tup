@@ -16,7 +16,7 @@ install:
   - sudo chmod 666 /dev/fuse
   - sudo chown root:fuse /dev/fuse
   - sudo gpasswd -a "${USER}" fuse
-  - ./bootstrap.sh
 
 script:
+  - ./bootstrap.sh
   - cd test && ./test.sh
