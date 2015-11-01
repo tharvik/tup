@@ -12,7 +12,7 @@ gen_uml() {
 
 		set -eux
 
-		echo "\${PATH}"
+		PATH="${PATH}"
 		export
 
 		insmod "/usr/lib/uml/modules/\`uname -r\`/kernel/fs/fuse/fuse.ko"
