@@ -18,6 +18,7 @@ gen_uml() {
 		set -eux
 
 		PATH="${PATH}:/usr/lib/gcc/x86_64-linux-gnu/4.6.3"
+		env
 
 		insmod "/usr/lib/uml/modules/\`uname -r\`/kernel/fs/fuse/fuse.ko"
 
