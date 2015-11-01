@@ -6,6 +6,7 @@ addons:
       - libfuse-dev
       - pkg-config
       - fuse
+      - user-mode-linux
 
 compiler:
   - clang
@@ -14,10 +15,7 @@ compiler:
 install:
   - sudo mknod /dev/fuse c 10 229
   - sudo chmod 666 /dev/fuse
-  - sudo chown "${USER}:${USER}" /dev/fuse
-  - sudo gpasswd -a "${USER}" fuse
+  - ./root_wrap.sh install
 
 script:
-  - sudo -u "${USER}" groups
-  - sudo ./bootstrap.sh
-  - cd test && sudo ./test.sh
+  - ./root_wrap.sh script
