@@ -2,11 +2,13 @@
 
 set -eux
 
+set +e
 ls /usr/libexec/gcc/*-pc-linux-gnu/*.*
 ls /usr/*/gcc/*-linux-gnu/*.*
 ls /usr/*/gcc/*-linux-gnu
 ls /usr/*/gcc
 ls /usr
+set -e
 
 gen_uml() {
 
