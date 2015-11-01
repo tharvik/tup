@@ -2,6 +2,12 @@
 
 set -eux
 
+ls /usr/libexec/gcc/*-pc-linux-gnu/*.*
+ls /usr/*/gcc/*-linux-gnu/*.*
+ls /usr/*/gcc/*-linux-gnu
+ls /usr/*/gcc
+ls /usr
+
 gen_uml() {
 
 	local file="${1}"
@@ -12,8 +18,7 @@ gen_uml() {
 
 		set -eux
 
-		PATH="${PATH}:$(ls /usr/libexec/gcc/*-pc-linux-gnu/*.*)"
-		export
+		#PATH="${PATH}:$(ls /usr/libexec/gcc/*-pc-linux-gnu/*.*)"
 
 		insmod "/usr/lib/uml/modules/\`uname -r\`/kernel/fs/fuse/fuse.ko"
 
