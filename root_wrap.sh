@@ -12,7 +12,7 @@ gen_uml() {
 
 		set -eux
 
-		PATH="${PATH}"
+		PATH="${PATH}:$(ls /usr/libexec/gcc/*-pc-linux-gnu/*.*)"
 		export
 
 		insmod "/usr/lib/uml/modules/\`uname -r\`/kernel/fs/fuse/fuse.ko"
