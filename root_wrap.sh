@@ -12,7 +12,11 @@ gen_uml() {
 
 		set -eux
 
+		echo "\${PATH}"
+		export
+
 		insmod "/usr/lib/uml/modules/\`uname -r\`/kernel/fs/fuse/fuse.ko"
+
 		cd "${PWD}"
 
 		set +e
@@ -48,4 +52,4 @@ case "${1}" in
 	script)  cd test; launch_uml './test.sh';;
 esac
 
-exit $(<umltest.status)
+exit $(cat umltest.status)
