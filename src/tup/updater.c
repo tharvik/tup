@@ -1324,9 +1324,11 @@ static int process_create_nodes(void)
 		return -1;
 	}
 	/* create_work must always use only 1 thread since no locking is done */
+	tup_db_commit();
 	compat_lock_disable();
-	rc = execute_graph(&g, 0, 1, create_work);
+	rc = execute_graph(&g, 1, 1, create_work);
 	compat_lock_enable();
+	tup_db_begin();
 
 	if(rc == 0) {
 		if(g.gen_delete_count) {
@@ -1812,6 +1814,9 @@ static void *run_thread(void *arg)
 static int create_work(struct graph *g, struct node *n)
 {
 	int rc = 0;
+
+	tup_db_begin();
+
 	if(n->tent->type == TUP_NODE_DIR || n->tent->type == TUP_NODE_GHOST) {
 		if(tup_entry_variant(n->tent)->enabled) {
 			if(n->already_used) {
@@ -1833,6 +1838,11 @@ static int create_work(struct graph *g, struct node *n)
 	}
 	if(tup_db_unflag_create(n->tnode.tupid) < 0)
 		rc = -1;
+
+	if (rc == 0)
+		tup_db_commit();
+	else
+		tup_db_rollback();
 
 	return rc;
 }
