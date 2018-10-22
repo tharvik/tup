@@ -667,7 +667,7 @@ check_no_osx()
 
 check_tup_no_suid()
 {
-	if ! tup privileged; then
+	if tup privileged; then
 		echo "Tup is privileged, but this test requires that it does not. Skipping test."
 		eotup
 	fi
@@ -675,7 +675,7 @@ check_tup_no_suid()
 
 check_tup_suid()
 {
-	if tup privileged; then
+	if ! tup privileged; then
 		echo "Tup needs to be privileged for this test to run. Skipping test."
 		eotup
 	fi
